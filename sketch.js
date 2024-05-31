@@ -15,6 +15,11 @@ function setup() {
   //createCanvas(490,700);
   createCanvas(0.7*windowHeight, windowHeight);
   generateRandomPoints(windowHeight);
+
+  // create a new Amplitude analyzer, this will analyze the volume of the song
+  analyzer = new p5.Amplitude();
+  // Connect the input of the analyzer to the song
+  analyzer.setInput(song);
 }
 
 // use the variable h to make sure the point scale with the window
@@ -52,61 +57,82 @@ function mousePressed() {
 }
 
 function draw() {
-  background(255, 200, 34);
+  colorMode(RGB, 255, 255, 255);
+  background(255,200,34);
   // reset the curves array each time we run
   curves = [];
-  //ensure that the length of the grasses scale with the window size correctly
+  
+  let rms = analyzer.getLevel();
+  // get the current sound level
+  let soundCoLength = 1.1*(rms+0.5);
+  // the coefficient to scale the length of the curves based on the sound level
   let L_Scale = windowHeight/700;
+  // Another coefficient to scale the length of the curves to ensure it scale with the screen
+
+  // map the rms
+  let hueValue1 = map(rms, 0.1, 0.4, 0, 360); 
+  let hueValue2 = map(rms, 0.1, 0.4, 0, 360); 
+
+  // set the hue values, make sure the colour changes based on the sound level
+  let ch1 = hueValue1;
+  let ch2 = hueValue2;
+
+  let h1 = ch1;
+  let s1 = 30;
+  let b1 = 100;
+
+  let h2 = ch2;
+  let s2 = 95;
+  let b2 = 60;
 
   //generateCurves(the number of curves,x coordinate,y coordinate,r,g,b,length of the curves,Distortion coefficient,radian);
   //use the generate function to generate curves
-  // ensure that the coordinate of the grasses scale with the window size correctly
   //darker colour curves--first laywer
-  generateCurves(12,windowHeight*0.7*300/490,windowHeight*220/700,144,62,91,45*L_Scale,2,3); 
+  generateCurves(12,windowHeight*0.7*300/490,windowHeight*220/700,h1,s1,b1,soundCoLength*45*L_Scale,2,3); 
   //lighter colour curves--second laywer
-  generateCurves(16,windowHeight*0.7*298/490,windowHeight*217/700,226,84,126,50*L_Scale,3,3); 
+  generateCurves(16,windowHeight*0.7*298/490,windowHeight*217/700,h2,s2,b2,soundCoLength*50*L_Scale,3,3); 
 
-  generateCurves(15,windowHeight*0.7*437/490,windowHeight*37/700,144,62,91,34*L_Scale,-17,-5); 
-  generateCurves(12,windowHeight*0.7*441/490,windowHeight*37/700,226,84,126,34*L_Scale,-8,-5); 
+  generateCurves(15,windowHeight*0.7*437/490,windowHeight*37/700,h1,s1,b1,soundCoLength*34*L_Scale,-17,-5); 
+  generateCurves(12,windowHeight*0.7*441/490,windowHeight*37/700,h2,s2,b2,soundCoLength*34*L_Scale,-8,-5); 
 
-  generateCurves(23,windowHeight*0.7*323/490,windowHeight*588/700,144,62,91,87*L_Scale,10,-5); 
-  generateCurves(25,windowHeight*0.7*319/490,windowHeight*591/700,226,84,126,83*L_Scale,18,-5); 
+  generateCurves(23,windowHeight*0.7*323/490,windowHeight*588/700,h1,s1,b1,soundCoLength*87*L_Scale,10,-5); 
+  generateCurves(25,windowHeight*0.7*319/490,windowHeight*591/700,h2,s2,b2,soundCoLength*83*L_Scale,18,-5); 
 
-  generateCurves(12,windowHeight*0.7*18/490,windowHeight*548/700,144,62,91,46*L_Scale,-6,-3); 
-  generateCurves(13,windowHeight*0.7*19/490,windowHeight*543/700,226,84,126,50*L_Scale,-12,-3); 
+  generateCurves(12,windowHeight*0.7*18/490,windowHeight*548/700,h1,s1,b1,soundCoLength*46*L_Scale,-6,-3); 
+  generateCurves(13,windowHeight*0.7*19/490,windowHeight*543/700,h2,s2,b2,soundCoLength*50*L_Scale,-12,-3); 
 
-  generateCurves(14,windowHeight*0.7*54/490,windowHeight*125/700,144,62,91,40*L_Scale,18,3); 
-  generateCurves(13,windowHeight*0.7*56/490,windowHeight*132/700,226,84,126,43*L_Scale,19,3); 
+  generateCurves(14,windowHeight*0.7*54/490,windowHeight*125/700,h1,s1,b1,soundCoLength*40*L_Scale,18,3); 
+  generateCurves(13,windowHeight*0.7*56/490,windowHeight*132/700,h2,s2,b2,soundCoLength*43*L_Scale,19,3); 
 
-  generateCurves(17,windowHeight*0.7*80/490,windowHeight*314/700,144,62,91,42*L_Scale,18,-5)
-  generateCurves(18,windowHeight*0.7*82/490,windowHeight*320/700,226,84,126,47*L_Scale,10,-5)
+  generateCurves(17,windowHeight*0.7*80/490,windowHeight*314/700,h1,s1,b1,soundCoLength*42*L_Scale,18,-5)
+  generateCurves(18,windowHeight*0.7*82/490,windowHeight*320/700,h2,s2,b2,soundCoLength*47*L_Scale,10,-5)
 
-  generateCurves(11,windowHeight*0.7*358/490,windowHeight*125/700,144,62,91,97*L_Scale,-12,3)
-  generateCurves(14,windowHeight*0.7*357/490,windowHeight*125/700,226,84,126,106*L_Scale,-3,3)
+  generateCurves(11,windowHeight*0.7*358/490,windowHeight*125/700,h1,s1,b1,soundCoLength*97*L_Scale,-12,3)
+  generateCurves(14,windowHeight*0.7*357/490,windowHeight*125/700,h2,s2,b2,soundCoLength*106*L_Scale,-3,3)
 
-  generateCurves(7,windowHeight*0.7*144/490,windowHeight*25/700,144,62,91,43*L_Scale,-20,4)
-  generateCurves(10,windowHeight*0.7*146/490,windowHeight*20/700,226,84,126,40*L_Scale,-15,4)
+  generateCurves(7,windowHeight*0.7*144/490,windowHeight*25/700,h1,s1,b1,soundCoLength*43*L_Scale,-20,4)
+  generateCurves(10,windowHeight*0.7*146/490,windowHeight*20/700,h2,s2,b2,soundCoLength*40*L_Scale,-15,4)
 
-  generateCurves(9,windowHeight*0.7*393/490,windowHeight*292/700,144,62,91,64*L_Scale,-4,2)
-  generateCurves(10,windowHeight*0.7*389/490,windowHeight*290/700,226,84,126,65*L_Scale,2,2)
+  generateCurves(9,windowHeight*0.7*393/490,windowHeight*292/700,h1,s1,b1,soundCoLength*64*L_Scale,-4,2)
+  generateCurves(10,windowHeight*0.7*389/490,windowHeight*290/700,h2,s2,b2,soundCoLength*65*L_Scale,2,2)
 
-  generateCurves(15,windowHeight*0.7*214/490,windowHeight*381/700,144,62,91,50*L_Scale,-3,5)
-  generateCurves(16,windowHeight*0.7*214/490,windowHeight*379/700,226,84,126,55*L_Scale,-5,5)
+  generateCurves(15,windowHeight*0.7*214/490,windowHeight*381/700,h1,s1,b1,soundCoLength*50*L_Scale,-3,5)
+  generateCurves(16,windowHeight*0.7*214/490,windowHeight*379/700,h2,s2,b2,soundCoLength*55*L_Scale,-5,5)
 
-  generateCurves(11,windowHeight*0.7*403/490,windowHeight*236/700,144,62,91,5*L_Scale,7,-2)
-  generateCurves(10,windowHeight*0.7*402/490,windowHeight*239/700,226,84,126,14*L_Scale,-1,-2)
+  generateCurves(11,windowHeight*0.7*403/490,windowHeight*236/700,h1,s1,b1,soundCoLength*5*L_Scale,7,-2)
+  generateCurves(10,windowHeight*0.7*402/490,windowHeight*239/700,h2,s2,b2,soundCoLength*14*L_Scale,-1,-2)
 
-  generateCurves(13,windowHeight*0.7*238/490,windowHeight*140/700,144,62,91,26*L_Scale,-2,-4)
-  generateCurves(17,windowHeight*0.7*241/490,windowHeight*139/700,226,84,126,22*L_Scale,-11,-4)
+  generateCurves(13,windowHeight*0.7*238/490,windowHeight*140/700,h1,s1,b1,soundCoLength*26*L_Scale,-2,-4)
+  generateCurves(17,windowHeight*0.7*241/490,windowHeight*139/700,h2,s2,b2,soundCoLength*22*L_Scale,-11,-4)
 
-  generateCurves(6,windowHeight*0.7*85/490,windowHeight*651/700,144,62,91,28*L_Scale,0,5)
-  generateCurves(9,windowHeight*0.7*86/490,windowHeight*647/700,226,84,126,25*L_Scale,-9,5)
+  generateCurves(6,windowHeight*0.7*85/490,windowHeight*651/700,h1,s1,b1,soundCoLength*28*L_Scale,0,5)
+  generateCurves(9,windowHeight*0.7*86/490,windowHeight*647/700,h2,s2,b2,soundCoLength*25*L_Scale,-9,5)
 
-  generateCurves(13,windowHeight*0.7*35/490,windowHeight*207/700,144,62,91,13*L_Scale,-10,5)
-  generateCurves(14,windowHeight*0.7*32/490,windowHeight*207/700,226,84,126,11*L_Scale,-12,5)
+  generateCurves(13,windowHeight*0.7*35/490,windowHeight*207/700,h1,s1,b1,soundCoLength*13*L_Scale,-10,5)
+  generateCurves(14,windowHeight*0.7*32/490,windowHeight*207/700,h2,s2,b2,soundCoLength*11*L_Scale,-12,5)
 
-  generateCurves(8,windowHeight*0.7*195/490,windowHeight*306/700,144,62,91,10*L_Scale,13,3)
-  generateCurves(10,windowHeight*0.7*195/490,windowHeight*301/700,226,84,126,14*L_Scale,6,3)
+  generateCurves(8,windowHeight*0.7*195/490,windowHeight*306/700,h1,s1,b1,soundCoLength*10*L_Scale,13,3)
+  generateCurves(10,windowHeight*0.7*195/490,windowHeight*301/700,h2,s2,b2,soundCoLength*14*L_Scale,6,3)
 
 
   // Draw fixed black dots
@@ -168,6 +194,7 @@ function Curve(startX, startY, controlX1, controlY1, controlX2, controlY2, endX,
 
   // Display method to draw the curve
   this.display = function() {
+    colorMode(HSB, 360, 100, 100);
     stroke(this.r, this.g, this.b); 
     strokeWeight(4.5); 
     noFill(); 

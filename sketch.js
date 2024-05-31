@@ -3,6 +3,14 @@ let blackPoints = [];
 let pinkPoints = [];
 let darkRedPoints = [];
 
+let song, analyzer;
+let isPlaying = false;
+
+// preload the song file
+function preload() {
+  song = loadSound('assets/383935__multitonbits__bs_electricity-bass-2.wav');
+}
+
 function setup() {
   //createCanvas(490,700);
   createCanvas(0.7*windowHeight, windowHeight);
@@ -31,6 +39,16 @@ function generateRandomPoints(h) {
     let y = random(h);
     darkRedPoints.push({ x: x, y: y });
   }
+}
+
+// press the mouse to play/pause the song
+function mousePressed() {
+  if (isPlaying) {
+    song.pause();// If the song is playing, pause it
+  } else {
+    song.loop();// If the song is not playing, start looping it
+  }
+  isPlaying = !isPlaying;// Toggle the isPlaying state
 }
 
 function draw() {

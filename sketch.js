@@ -58,7 +58,8 @@ function mousePressed() {
 
 function draw() {
   colorMode(RGB, 255, 255, 255);
-  background(255,200,34);
+  // change the background colour to black to improve the overall visual effects
+  background(0);
   // reset the curves array each time we run
   curves = [];
   
@@ -135,32 +136,28 @@ function draw() {
   generateCurves(10,windowHeight*0.7*195/490,windowHeight*301/700,h2,s2,b2,soundCoLength*14*L_Scale,6,3)
 
 
-  // Draw fixed black dots
-  fill(0);
+  // change the points color to white, and use smaller size
+  fill(255);
   noStroke();
   for (let i = 0; i < blackPoints.length; i++) {
-    ellipse(blackPoints[i].x, windowHeight*blackPoints[i].y, 5, 5); // Adjust the size of the dots as needed
+    ellipse(blackPoints[i].x, windowHeight*blackPoints[i].y, 1, 1); // Adjust the size of the dots as needed
   }
   
-  // Draw fixed pink dots
-  fill(255, 105, 180); // Pink color
   noStroke();
   for (let i = 0; i < pinkPoints.length; i++) {
-    ellipse(pinkPoints[i].x, pinkPoints[i].y, 5, 5); // Adjust the size of the dots as needed
+    ellipse(pinkPoints[i].x, pinkPoints[i].y, 2, 2); // Adjust the size of the dots as needed
   }
   
-  // Draw fixed dark red dots
-  fill(139, 0, 0); // Dark red color
   noStroke();
   for (let i = 0; i < darkRedPoints.length; i++) {
-    ellipse(darkRedPoints[i].x, darkRedPoints[i].y, 5, 5); // Adjust the size of the dots as needed
+    ellipse(darkRedPoints[i].x, darkRedPoints[i].y, 1.5, 1.5); // Adjust the size of the dots as needed
   }
   
   //Draw the curves
   for (let i = 0; i < curves.length; i++) {
     curves[i].display();
   }
-
+  
 }
 
 

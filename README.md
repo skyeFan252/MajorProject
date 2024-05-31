@@ -10,13 +10,13 @@ One of my teammates chose the **Perlin noise and randomness** method. She plans 
 
 #### Inspirations
 
-![Yayoi Kusama's work(assets/work.jpg)]
+![Yayoi Kusama's work(/Users/sishifan/Documents/MajorProject/assets/work.jpg)]
 I was inspired by Yayoi Kusama's polka dot work, as shown in the image above (Manual Jakarta, 2018), featuring a black background with colourful polka dots. Inspired by this, I changed the background of my group project design to black, the dots to white, and made the grass colourful, which changes with the sound. The black background enhances the contrast with the white dots and the colourful grass, creating a visually striking effect.
-![Original design of group work(assets/Screenshot1.png)]
-![Individual's design screenshot 1(assets/Screenshot1.png)]
-![Individual's design screenshot 2(assets/Screenshot2.png)]
-![Individual's design screenshot 3(assets/Screenshot3.png)]
-![Individual's design screenshot 4(assets/Screenshot4.png)]
+![Original design of group work(/Users/sishifan/Documents/MajorProject/assets/Screenshot0.png)]
+![Individual's design screenshot 1(/Users/sishifan/Documents/MajorProject/assets/Screenshot1.png)]
+![Individual's design screenshot 2(/Users/sishifan/Documents/MajorProject/assets/Screenshot2.png)]
+![Individual's design screenshot 3(/Users/sishifan/Documents/MajorProject/assets/Screenshot3.png)]
+![Individual's design screenshot 4(/Users/sishifan/Documents/MajorProject/assets/Screenshot4.png)]
 
 Reference:
 Manual Jakarta, 2018. _Museum Macan Yayoi Kusama_. [online] Available at: <https://manual.co.id/wp-content/uploads/2018/05/Museum-Macan-Yayoi-Kusama-20-980x719.jpg> [Accessed 31 May 2024].
